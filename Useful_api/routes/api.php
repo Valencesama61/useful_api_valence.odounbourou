@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\LinkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/modules', [ModuleController::class, 'index'])->name('index.Module');
     Route::post('/modules/{id}/activate', [ModuleController::class, 'activate']);
     Route::post('/modules/{id}/deactivate', [ModuleController::class, 'deactivate']);
+});
+
+//Module_1 Routes
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::post('/shorten', [LinkController::class, 'shortLink']);
 });

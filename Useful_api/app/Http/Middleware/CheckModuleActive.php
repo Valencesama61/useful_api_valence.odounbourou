@@ -18,10 +18,10 @@ class CheckModuleActive
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, $id,  Closure $next): Response
+    public function handle(Request $request,  Closure $next): Response
     {
-        $module = Module::find($id);
         $user = $request->user();
+        
         $exist = UserModule::where('user_id', $user->id)
                             ->where('module_id', $module->id)
                             ->exists();
