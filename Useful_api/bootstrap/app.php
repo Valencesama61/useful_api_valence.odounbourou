@@ -12,7 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware = [
+            'CheckModuleActive' => App\Http\Middleware\CheckModuleActive::class,
+        ];
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
