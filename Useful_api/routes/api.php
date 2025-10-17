@@ -22,6 +22,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 });
 
 //Module_1 Routes
-Route::group(['middleware' => ['auth:sanctum']], function(){
+Route::group(['middleware' => ['auth:sanctum', 'CheckModuleActive']], function(){
     Route::post('/shorten', [LinkController::class, 'shortLink']);
+    Route::get('/s/{code}', [LinkController::class, 'redirection']);
+    Route::get('/links', [LinkController::class, 'fetchLinks']);
+    Route::delete('links/{id}', [LinkController::class, 'delete']);
 });
